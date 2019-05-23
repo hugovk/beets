@@ -93,15 +93,15 @@ setup(
         'pyyaml',
     ] + [
         # Avoid a version of munkres incompatible with Python 3.
-        'munkres~=1.0.0' if sys.version_info < (3, 5, 0) else
+        'munkres~=1.0.0' if sys.version_info.major == 2 else
         'munkres!=1.1.0,!=1.1.1' if sys.version_info < (3, 6, 0) else
         'munkres>=1.0.0',
     ] + (
         # Use the backport of Python 3.4's `enum` module.
-        ['enum34>=1.0.4'] if sys.version_info < (3, 4, 0) else []
+        ['enum34>=1.0.4'] if sys.version_info.major == 2 else []
     ) + (
         # Pin a Python 2-compatible version of Jellyfish.
-        ['jellyfish==0.6.0'] if sys.version_info < (3, 4, 0) else ['jellyfish']
+        ['jellyfish==0.6.0'] if sys.version_info.major == 2 else ['jellyfish']
     ) + (
         # Support for ANSI console colors on Windows.
         ['colorama'] if (sys.platform == 'win32') else []
@@ -139,7 +139,7 @@ setup(
         'web': ['flask', 'flask-cors'],
         'import': ['rarfile'],
         'thumbnails': ['pyxdg', 'Pillow'] +
-        (['pathlib'] if (sys.version_info < (3, 4, 0)) else []),
+        (['pathlib'] if sys.version_info.major == 2 else []),
         'metasync': ['dbus-python'],
         'sonosupdate': ['soco'],
         'bpd': ['PyGObject'],
@@ -157,6 +157,7 @@ setup(
     #               or Python Audio Tools
     #   ipfs: go-ipfs
 
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
     classifiers=[
         'Topic :: Multimedia :: Sound/Audio',
         'Topic :: Multimedia :: Sound/Audio :: Players :: MP3',
@@ -167,7 +168,6 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',

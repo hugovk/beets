@@ -106,7 +106,7 @@ def ex_call(func, args):
         if not isinstance(args[i], ast.expr):
             args[i] = ex_literal(args[i])
 
-    if sys.version_info[:2] < (3, 5):
+    if sys.version_info.major == 2:
         return ast.Call(func, args, [], None, None)
     else:
         return ast.Call(func, args, [])

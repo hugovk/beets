@@ -10,7 +10,7 @@ Installing
 ----------
 
 You will need Python.
-Beets works on `Python 2.7`_ and Python 3.4 or later.
+Beets works on `Python 2.7`_ and Python 3.5 or later.
 
 .. _Python 2.7: http://www.python.org/download/
 

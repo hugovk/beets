@@ -309,7 +309,7 @@ class GetTest(DummyDataTestCase):
             dbcore.query.RegexpQuery('year', u'199(')
         exception_text = six.text_type(raised.exception)
         self.assertIn(u'not a regular expression', exception_text)
-        if sys.version_info >= (3, 5):
+        if sys.version_info.major >= 3:
             self.assertIn(u'unterminated subpattern', exception_text)
         else:
             self.assertIn(u'unbalanced parenthesis', exception_text)
